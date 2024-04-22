@@ -7,10 +7,10 @@ body {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 #app{
-  background-image: url('./src/assets/cold-bg.jpg');
+  background-image: url('/bg.jpg');
   background-size: cover;
   background-position: bottom;
-  transition: 10s;
+  transition: 0.4s;
 }
 main{
   min-height: 100vh;
