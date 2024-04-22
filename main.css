@@ -38,7 +38,7 @@ background-color: rgba(255, 255, 255, 0.5);
 border-radius: 0px 16px 0px 16px;
 box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
 }
-.location-box .location{
+.forecast-box .location{
 
   color: #fff;
   font-size: 32px;
@@ -46,7 +46,7 @@ box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
   text-align: center;
   text-shadow: 1px 3px rgba(0, 0, 0, 0.25);
 }
-.location-box .date{
+.forecast-box .date{
   color: #fff;
   font-size: 20px;
   font-weight: 300;
@@ -55,11 +55,11 @@ box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
   font-style: italic;
 
 }
-.weather-box{
+.forecast-box{
   text-align: center;
 
 }
-.weather-box .temp{
+.forecast-box .temp{
   display: inline-block;
   padding: 10px 25px;
   color: #fff;
@@ -70,7 +70,7 @@ border-radius: 16px;
 margin: 30px 0px;
 }
 
-.weather-box .weather{
+.forecast-box .weather{
   color: #fff;
   font-size: 48px;
   font-weight: 700;
