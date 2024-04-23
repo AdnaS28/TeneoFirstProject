@@ -11,9 +11,11 @@
       
       <div v-if="weather.forecast" class="weather-wrap">
         <div v-for="day in weather.forecast" :key="day.dt" class="forecast-box">
+          <div class="details-container">
           <div class="date">{{ new Date(day.dt * 1000).toLocaleDateString() }}</div>
           <div class="weather">{{ day.weather[0].description }}</div>
           <div class="temp">{{ Math.round(day.main.temp) }} °C</div>
+        </div>
         </div>
       </div>
     </main>
