@@ -26,7 +26,7 @@ display: block;
 padding: 15px;
 width: 100%;
 
-color: #313131;
+color: whitesmoke;
 font-size: 20px;
 
 appearance: none;
@@ -34,7 +34,7 @@ border: none;
 outline: none;
 background: none;
 
-background-color: rgba(255, 255, 255, 0.5);
+background-color: rgba(0, 0, 0, 0.5);
 border-radius: 0px 16px 0px 16px;
 box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
 }
@@ -58,17 +58,20 @@ box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
 
 }
 
-  
 
 .forecast-box{
   text-align: center;
+  flex: 1; /* Svaka rubrika će zauzimati jednaku širinu */
+  margin: 5px; /* Margine između rubrika */
+  display: flex;
+  justify-content: space-between;
 }
 .forecast-box .temp{
  
   padding: 10px 25px;
   color: #fff;
-  font-size: 102px;
-  font-weight: 900;
+  font-size: 60px;
+  font-weight: 100;
  background-color: rgba(225, 225, 225, 0.25);
 border-radius: 16px;
 margin: 30px 0px;
@@ -78,8 +81,8 @@ flex: 1; /* Svaka rubrika će zauzimati jednaku širinu */
 
 .forecast-box .weather{
   color: #fff;
-  font-size: 48px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 80;
   font-style: italic;
   text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
   flex: 1; /* Svaka rubrika će zauzimati jednaku širinu */
@@ -92,5 +95,86 @@ flex: 1; /* Svaka rubrika će zauzimati jednaku širinu */
   justify-content: space-between;
 }
 
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+  z-index: 1000;
+}
 
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
 
+.popup button {
+  margin-top: 10px;
+}
+
+button{
+  box-shadow:rgba(225, 225, 225, 0.25);
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  border-radius: 5px ;
+}
+
+.current-location{
+  text-align: center;
+  font-weight: 400;
+  font-size: 15px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: whitesmoke;
+  font-style: italic;
+  transition: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+  text-decoration:dashed;
+  background-color: #313131;
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+
+  background-color: rgba(0, 0, 0, 0.223);
+  border-radius: 0px 16px 0px 16px;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+  box-sizing: content-box;
+}
+
+.register{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color:aliceblue;
+  padding-inline-end: 5px;
+ 
+}
+.login-head{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: aliceblue;
+  justify-content: center;
+  margin-left: 550px;
+}
+a {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: aliceblue;
+  margin-left: 15px;
+}
+
+.login-title{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: aliceblue;
+  margin-left: 140px;
+}
