@@ -31,10 +31,11 @@
  
 }
 .search-box{
-  width: 100%;
+  width: 83%;
   margin-bottom: 30px;
   color:#fff;
-  padding-top: 4px;
+  padding-top: 10px;
+  padding-left: 30px;
 }
 
 .search-box .search-bar{
@@ -314,6 +315,7 @@ a{
   padding-left: 50px;
   
 }
+
 /*register section*/
 #body-register{
   background-size: cover;

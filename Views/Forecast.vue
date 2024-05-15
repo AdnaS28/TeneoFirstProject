@@ -90,6 +90,18 @@ export default {
       }
     },
 
+    /*async signup({ commit }, payload) {
+    commit('setLoading', true);
+    await fb.auth.createUserWithEmailAndPassword(payload.email, payload.password)
+      .then(firebaseData => {
+        fb.usersCollection.doc(firebaseData.user.uid).set({
+          nickname: payload.nickname,
+          name: payload.name,
+          email: payload.email,
+          enable: false // <= this from true to false
+        })
+          .then(_ => {*/
+
     async fetchWeather(latitude, longitude) {
       const API_KEY = 'dcf0aa7bee48722b04be22c49ef54dfa';
       const API_URL_W = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&lang=hr`;
@@ -191,7 +203,7 @@ async getFiveDayForecast() {
    },
        // Start background slideshow
        startBackgroundSlideshow() {
-      const images = ['./Views/switzerland-8056381-min.jpg', './Views/forsythia-8638586-min.jpg', './Views/buildings-5528981-min.jpg' ];
+      const images = ['./Views/switzerland-8056381-min-min.jpg', './Views/forsythia-8638586-min-min.jpg', './Views/buildings-5528981-min-min.jpg' ];
       let currentImageIndex = 0;
 
       setInterval(() => {
