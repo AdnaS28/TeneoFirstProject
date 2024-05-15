@@ -1,19 +1,31 @@
 <template>
-    <link rel="stylesheet" href="/main.css">
-    <main class="login-head">
-    <div class="login">
-        <h1 class="login-title">Login</h1>
-        <form @submit.prevent='Login'>
-            <input type="text" placeholder="Email" v-model="email"/>
-            <input type="password" placeholder="Password" v-model="password" />
-            <input type="submit" value="Login" />
+<body id="body-login">
+        <link rel="stylesheet" href="/main.css">
+    
+       
+
+        <form class="Form2"@submit.prevent='Login'>
+            <h1 class="login-title"> Sign In</h1><br>
+            <div id="inputs">
+            <div class="col-md-6 col-lg-4">
+                
+                <input id="email-field" type="text" placeholder="Email" v-model="email"/><br>
+                <input id="password-field" type="password" placeholder="Password" v-model="password" /><br>
+            </div>
+        </div>
+            <div id="third-button">
+                <input id="another-button"  type="submit" value="Login" />
+            </div>
+          <div id="registration"> 
+        <p class="reg"> Need an account ? <router-link to="/register">Register here</router-link></p><br>
+    </div>  
+        <p class="password-query">Forgot password?   Request an SMS code</p>
+    
             
-            <p class="register"> Need an account ? <router-link to="/register">Register here</router-link></p>
         </form>
     
-        
-    </div>
-</main>    
+
+   
     <div v-if="invalidLogin" class="popup">
             <div class="popup-content">
             Invalid email or password.
@@ -21,7 +33,7 @@
             </div>
         </div> 
     
-    
+    </body>   
 </template>
 
 <script>
@@ -76,3 +88,49 @@ export default{
     }
 
 </script>
+
+
+/*css for login
+.login-box{
+  border-top: black;
+  border: 10px;
+  justify-content: center;
+}
+.login-title{
+    font-family: Arial, Helvetica, sans-serif
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+  z-index: 1000;
+}*/
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  text-align: center;
+
+}
+
+.popup button {
+  margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+

@@ -1,37 +1,48 @@
 <template>
-  <div id="app">
+  <div id="app2">
     <main>
       <link rel="stylesheet" href="/main.css">
       <!-- Search box -->
       <div class="search-box">
         <input 
           type="text" class="search-bar" placeholder="Search..."
-          @keypress.enter="fetchWeather"
+          id="cityQuery"
+          @keypress.enter="searchWeatherByCity"
         />
       </div>
       <!-- Current location -->
       <div class="current-location">
         <p>Your current location is: {{ city }} in {{ region }}, {{ country }}.</p>
       </div> 
-      <!-- Weather details -->
+      
       <div class="weather-details">
         
-        <button @click="toggleTemperatureUnit">Toggle Unit</button>
+        <button id="change-unit" @click="toggleTemperatureUnit">Toggle Unit</button>
+      </div>
+
+      <div class="login-button">
+        <button id="login-button" @click="redictToLoginPage ">Login</button>
+
       </div>
       
+      
       <!-- Forecast -->
-      <div v-if="fiveDayForecast.list" class="forecast-box">
-        <div v-for="day in fiveDayForecast.list" :key="day.dt" class="details-container">
-          <div class="date">{{ new Date(day.dt * 1000).toLocaleDateString() }}</div>
-          <div class="weather">{{ day.weather[0].description }}</div>
-          <div class="temp">{{ convertTemperature(day.main.temp) }} {{ temperatureUnit }}</div>
-        </div>
+      {{ console.log('filter', fiveDayForecast) }}
+      <div v-if="fiveDayForecast" class="forecast-box">
+        <div v-for="day in fiveDayForecast" :key="day.dt" class="details-container">
+  <div class="date">{{ new Date(day.dt * 1000).toLocaleDateString() }}</div>
+  <div class="weather">{{ day.weather[0].description }}</div>
+  <div class="temp">{{ convertTemperature(day.main.temp) }} {{ temperatureUnit }}</div>
+</div>
+
       </div>
     </main>
   </div>
+        
 </template>
 
 <script>
+
 export default {
   name: 'app',
   data() {
@@ -52,8 +63,11 @@ export default {
   },
   mounted() {
     this.getGeolocation();
+    this.startBackgroundSlideshow();
   },
+  
   methods: {
+  
     async getGeolocation() {
       try {
         
@@ -85,25 +99,32 @@ export default {
         const dataW = await responseW.json();
         this.weather = dataW;
         this.updateTemperature(dataW.main.temp); // Update temperature
+        
       } catch (error) {
         console.error('Failed to fetch weather data:', error);
       }
     },
 
-    async getFiveDayForecast() {
-      const API_KEY = 'dcf0aa7bee48722b04be22c49ef54dfa';
-      const API_URL_FiveDay = `https://api.openweathermap.org/data/2.5/forecast?lat=${this.latitude}&lon=${this.longitude}&appid=${API_KEY}&lang=hr`;
+async getFiveDayForecast() {
+  const API_KEY = 'dcf0aa7bee48722b04be22c49ef54dfa';
+  const API_URL_FiveDay = `https://api.openweathermap.org/data/2.5/forecast?lat=${this.latitude}&lon=${this.longitude}&appid=${API_KEY}&lang=hr`;
 
-      try {
-        const response = await fetch(API_URL_FiveDay);
-        const data = await response.json();
-        this.fiveDayForecast =  {
-      list: data.list.slice(0, 5)
-      };
-      } catch (error) {
-        console.error('Failed to fetch five-day forecast data:', error);
-    }
-  },
+  try {
+    const response = await fetch(API_URL_FiveDay);
+    const data = await response.json();
+
+    // Filter the forecast data for 12:00:00 of each day
+    const filteredForecast = data.list.filter(forecast => forecast.dt_txt.includes(' 12:00:00'));
+
+    // Assign the filtered forecast data to this.fiveDayForecast
+    this.fiveDayForecast = filteredForecast;
+    
+    console.log('Filtered forecast:', this.fiveDayForecast);
+  } catch (error) {
+    console.error('Failed to fetch five-day forecast data:', error);
+  }
+}
+,
 
     // Method to toggle temperature unit
     toggleTemperatureUnit() {
@@ -136,20 +157,25 @@ export default {
     async searchWeatherByCity() {
       try {
         this.errorMessage =''
-         const cityQuery = encodeURIComponent(this.query.trim());
+        const inputElement = document.getElementById('cityQuery');
+        const cityQuery = encodeURIComponent(inputElement.value.trim());
+         console.log(cityQuery);
          const API_KEY = 'dcf0aa7bee48722b04be22c49ef54dfa';
         const API_URL_City = `https://api.openweathermap.org/data/2.5/weather?q=${cityQuery}&appid=${API_KEY}&lang=hr`;
 
         const response= await fetch(API_URL_City);
-        const data = await response.json()
+        console.log('API response:', response);
+        console.log('API status:', response.status);
+        const data = await response.json();
+        console.log('API data:', data)
 
-        if(response.ok) {
+        if(data.cod === 200) {
           this.city = data.name;
           this.country = data.sys.country;
           this.latitude = data.coord.lat;
           this.longitude = data.coord.lon;
-
           this.fetchWeather(this.latitude, this.longitude)
+          console.log(this.fetchWeather)
           this.getFiveDayForecast()
         }else {
           throw new Error ('City not found');
@@ -157,7 +183,26 @@ export default {
       }catch (error) {
         console.log('Error searching weather by city', error)
         this.errorMessage = 'City not found. Please try again.';
+        alert('City not found. Please try again.')
       }
+    },
+   async redictToLoginPage () {
+    window.location.href = "/login";
+   },
+       // Start background slideshow
+       startBackgroundSlideshow() {
+      const images = ['./Views/switzerland-8056381-min.jpg', './Views/forsythia-8638586-min.jpg', './Views/buildings-5528981-min.jpg' ];
+      let currentImageIndex = 0;
+
+      setInterval(() => {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    const appElement = document.getElementById('app2');
+    appElement.style.backgroundImage = `url('${images[currentImageIndex]}')`;
+
+}, 4000);
+
+
+
     }
   }
 };

@@ -1,13 +1,26 @@
 <template>
+    <body id="body-register">
     <link rel="stylesheet" href="/main.css">
-    <div class="register">
-        <h1>Register</h1>
-        <form @submit.prevent='Register'>
-            <input type="text" placeholder="Email" v-model="email"/>
-            <input type="password" placeholder="Password" v-model="password" />
-            <input type="submit" value="Register" />
+    
+      
+        <form class="Form2"@submit.prevent='Register'>
+            <h1 class="login-title">Register</h1>
+            <div id="inputs">
+            <div class="col-md-6 col-lg-4"></div>
+            <input id="email-field" type="text" placeholder="Email" v-model="email"/></br>
+            <input id="password-field" type="password" placeholder="Password" v-model="password" /></br>
+
+            <div id="sixth-button">
+            <input id="fifth-button" type="submit" value="Register" />
+        </div>
+         <div id="login-query">
+        <p class="log"> Already have an account ? <router-link to="/login">Login Here</router-link></p><br>
+         </div>
+        </div>
         </form>
-    </div>
+  
+  
+    </body>
 </template>
 
 <script>
@@ -36,6 +49,7 @@ export default {
          email,
          password}
     }
+    
 
 }
 
